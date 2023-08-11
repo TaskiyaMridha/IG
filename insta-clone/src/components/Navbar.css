@@ -1,12 +1,14 @@
 img {
     width: 10%;
     object-fit: contain;
+    
 }
 
 .navbar{
 display: flex;
 justify-content: space-around;
 box-shadow: 1px 5px 5px #e0dcdc;
+
 }
 
 ul {
