@@ -39,9 +39,37 @@ router.post("/signup",async(req, res) => {
        
          })
         })
+      
+        
         
 
     
 })
+
+router.post("/signin", async (req, res) => {
+    const { email, password } = req.body;
+    if (!email || !password) {
+      return res.status(422).json({ error: "Please add Email and Password" });
+    }
+    USER.findOne({ email:email }).then((savedUser) => {
+      if (!savedUser) {
+        return res.status(422).json({ error: "Invalid Email" });
+      }
+     bcrypt.compare(password,savedUser.password ).then ((match) => {
+        if (match) {
+          return res.status(200).json({ message: "Signed in successfully" });
+        }else{
+            return res.status(422).json({
+                error: "Invalid Password"
+            })
+        }
+
+     })
+     .catch(err=> console.log(err))
+    });
+  });
+  
+
+
 
 module.exports = router;

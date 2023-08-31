@@ -14,6 +14,8 @@ export default function SignUp() {
   //Toast function
   const notifyA=(msg)=> toast.error(msg)
   const notifyB=(msg)=> toast.success(msg)
+
+  
   const emailRegex=/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
   const passwordRegex=/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/
   const postData =()=>{
