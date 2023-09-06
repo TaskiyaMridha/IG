@@ -8,7 +8,7 @@ export default function Profile() {
      <div className="profile-frame">
       {/* profile-pic */}
       <div className="profile-pic">
-      <img src="https://media.istockphoto.com/id/1389348844/photo/studio-shot-of-a-beautiful-young-woman-smiling-while-standing-against-a-grey-background.jpg?s=1024x1024&w=is&k=20&c=C772iuu-JdrSc1ficwNVDaSLQp3-II9OEpDpxPgmXPg=" alt=""/>
+      <img src={require('../img/profile.jpg')}/>
       </div>
       {/* profile-data */}
       <div className="profile-data">
@@ -28,12 +28,19 @@ export default function Profile() {
      }}/>
     {/*Gallery*/}
      <div className="gallery">
-     <img src="https://media.istockphoto.com/id/1389348844/photo/studio-shot-of-a-beautiful-young-woman-smiling-while-standing-against-a-grey-background.jpg?s=1024x1024&w=is&k=20&c=C772iuu-JdrSc1ficwNVDaSLQp3-II9OEpDpxPgmXPg=" alt=""/>
-     <img src="https://media.istockphoto.com/id/1389348844/photo/studio-shot-of-a-beautiful-young-woman-smiling-while-standing-against-a-grey-background.jpg?s=1024x1024&w=is&k=20&c=C772iuu-JdrSc1ficwNVDaSLQp3-II9OEpDpxPgmXPg=" alt=""/>
-     <img src="https://media.istockphoto.com/id/1389348844/photo/studio-shot-of-a-beautiful-young-woman-smiling-while-standing-against-a-grey-background.jpg?s=1024x1024&w=is&k=20&c=C772iuu-JdrSc1ficwNVDaSLQp3-II9OEpDpxPgmXPg=" alt=""/>
-     <img src="https://media.istockphoto.com/id/1389348844/photo/studio-shot-of-a-beautiful-young-woman-smiling-while-standing-against-a-grey-background.jpg?s=1024x1024&w=is&k=20&c=C772iuu-JdrSc1ficwNVDaSLQp3-II9OEpDpxPgmXPg=" alt=""/>
-     <img src="https://media.istockphoto.com/id/1389348844/photo/studio-shot-of-a-beautiful-young-woman-smiling-while-standing-against-a-grey-background.jpg?s=1024x1024&w=is&k=20&c=C772iuu-JdrSc1ficwNVDaSLQp3-II9OEpDpxPgmXPg=" alt=""/>
-     <img src="https://media.istockphoto.com/id/1389348844/photo/studio-shot-of-a-beautiful-young-woman-smiling-while-standing-against-a-grey-background.jpg?s=1024x1024&w=is&k=20&c=C772iuu-JdrSc1ficwNVDaSLQp3-II9OEpDpxPgmXPg=" alt=""/>
+     <img src={require('../img/T.jpg')}/>
+     <img src={require('../img/G.jpg')}/>
+     <img src={require('../img/s.jpg')}/>
+     <img src={require('../img/H.jpg')}/>
+     <img src={require('../img/profile.jpg')}/>
+     <img src={require('../img/grp.jpg')}/>
+     <img src={require('../img/X.jpg')}/>
+     <img src={require('../img/flower.jpg')}/>
+     <img src={require('../img/li.jpg')}/>
+     <img src={require('../img/iny.jpg')}/>
+
+
+
      </div>
      
     </div>
