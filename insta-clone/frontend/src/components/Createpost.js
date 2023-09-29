@@ -1,6 +1,63 @@
-import React from 'react'
+import React,{useState,useEffect} from 'react'
 import "./Createpost.css";
+import { toast } from 'react-toastify';
+import {useNavigate} from "react-router-dom"
+
 export default function Createpost(){
+    const [body,setBody]=useState("");
+    const [image,setImage]=useState("")
+    const [url,setUrl]=useState("")
+    const navigate = useNavigate()
+
+      // Toast function
+  const notifyA = (msg) => toast.error(msg);
+  const notifyB = (msg) => toast.success(msg);
+
+useEffect(() => {
+    //saving post to mongodb
+    if(url){
+        fetch("http://localhost:5000/createPost",{
+            method:"post",
+            headers:{
+             "Content-Type":"application/json",
+             "Authorization": "Bearer " +localStorage.getItem("jwt")
+            },
+             body:JSON.stringify({
+                 body,
+                 pic:url
+             })
+         }).then(res=>res.json())
+         .then(data => {if(data.error){
+            notifyA(data.error)
+         }else{
+            notifyB("Successfully Posted")
+            navigate("/")
+         }
+        })
+         .catch(err=>console.log(err))
+         
+        
+    }
+}, [url])
+    //posting image to cloudinary
+    const postDetails=()=>{
+console.log(body,image) 
+const data = new FormData()
+data.append("file",image);
+data.append("upload_preset","insta-clone");
+data.append("cloud_name","taskiya");
+fetch("https://api.cloudinary.com/v1_1/taskiya/image/upload",{
+method: "Post",
+body: data
+}).then(res=>res.json())
+.then(data=> setUrl(data.url))
+.catch(err=>console.log(err))
+
+
+
+    }
+
+    
     const loadfile= (event)=>{
         var output = document.getElementById('output');
         output.src = URL.createObjectURL(event.target.files[0]);
@@ -13,12 +70,20 @@ export default function Createpost(){
             {/* header */}
         <div className='post-header'>
 <h4 style={{margin:"3px auto"}}> Create New Post</h4>
-<button id="post-btn">Share</button>
+<button id="post-btn" onClick={()=>{postDetails()}}>Share</button>
         </div>
         {/* image preview */}
         <div className="main-div">
             <img id="output" src="https://cdn4.iconfinder.com/data/icons/complete-common-version-6-3/1024/picture-256.png"/>
-          <input type="file" accept="image/*" onChange={(event)=>{loadfile(event)}}/>  
+
+          <input 
+          type="file" 
+          accept="image/*" 
+          onChange={(event)=>{
+            loadfile(event);
+          setImage(event.target.files[0])
+        
+        }}/>  
         </div>
         {/* Details */}
         <div className="details">
@@ -28,7 +93,9 @@ export default function Createpost(){
                 </div>
                 <h5>Aqsa Mridha</h5>
             </div>
-            <textarea  type="text" placeholder="Write a caption....">
+            <textarea value={body} onChange={(e)=>{
+                setBody(e.target.value);
+            }} type="text" placeholder="Write a caption....">
 
             </textarea>
         </div>

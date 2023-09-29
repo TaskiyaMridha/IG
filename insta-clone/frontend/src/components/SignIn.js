@@ -11,12 +11,12 @@ export default function SignIn() { // Make sure the component name is capitalize
   const emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 
   // Toast function
-  const notifyError = (msg) => toast.error(msg);
-  const notifySuccess = (msg) => toast.success(msg);
+  const notifyA = (msg) => toast.error(msg);
+  const notifyB = (msg) => toast.success(msg);
 
   const postData = () => {
     if (!emailRegex.test(email)) {
-      notifyError("Invalid email");
+      notifyA("Invalid email");
       return;
     }
 
@@ -33,11 +33,15 @@ export default function SignIn() { // Make sure the component name is capitalize
     .then(res => res.json())
     .then(data => {
       if (data.error) {
-        notifyError(data.error);
+        notifyA(data.error)
       } else {
-        notifySuccess(data.message);
-        navigate("/");
+        notifyB(data.message)
+        console.log(data)
+        localStorage.setItem("jwt",data)
+        navigate("/")
       }
+      console.log(data)
+      
     })
     .catch(error => {
       console.error("Error sending data to server:", error);
