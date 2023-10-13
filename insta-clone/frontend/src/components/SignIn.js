@@ -21,7 +21,7 @@ export default function SignIn() { // Make sure the component name is capitalize
       notifyA("Invalid email");
       return;
     }
-
+// Sending data to server
     fetch("http://localhost:5000/signin", {
       method: "post",
       headers: {
@@ -39,7 +39,8 @@ export default function SignIn() { // Make sure the component name is capitalize
       } else {
         notifyB("Signed In Successfully")
         console.log(data)
-        localStorage.setItem("jwt",data)
+        localStorage.setItem("jwt",data.token)
+        localStorage.setItem("user",JSON.stringify(data.user))
         setUserLogin(true)
         navigate("/")
       }

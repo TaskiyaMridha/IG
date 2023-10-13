@@ -26,7 +26,7 @@ const [pic, setPic] = useState([])
       </div>
       {/* profile-data */}
       <div className="profile-data">
-    <h1>Aqsa Mridha</h1>
+    <h1>{JSON.parse(localStorage.getItem("user")).name}</h1>
     <div className="profile-info" style={{display:"flex"}}>
       <p style={{ marginRight: "10px" }}>40 posts </p>
       <p style={{ marginRight: "10px" }}> 40 followers </p>
