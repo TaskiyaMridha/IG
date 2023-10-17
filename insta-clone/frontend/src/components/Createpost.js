@@ -74,7 +74,7 @@ body: data
         </div>
         {/* image preview */}
         <div className="main-div">
-            <img id="output" src="https://cdn4.iconfinder.com/data/icons/complete-common-version-6-3/1024/picture-256.png"/>
+            <img id="output" src="https://cdn4.iconfinder.com/data/icons/complete-common-version-6-3/1024/picture-256.png" alt=""/>
 
           <input 
           type="file" 
@@ -89,7 +89,7 @@ body: data
         <div className="details">
             <div className="card-header">
                 <div className="card-pic">
-                <img src={require('../img/profile.jpg')}/>
+                <img src={require('../img/profile.jpg') } alt=""/>
                 </div>
                 <h5>Aqsa Mridha</h5>
             </div>

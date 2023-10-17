@@ -8,6 +8,7 @@ const POST = mongoose.model("POST");
 router.get("/allposts", requireLogin, (req, res) => {
     POST.find()
         .populate("postedBy", "_id name")
+        .populate("comments.postedBy", "_id name")
         .then((posts) => {
             res.json(posts);
         })
@@ -90,5 +91,25 @@ router.put("/unlike", requireLogin, (req, res) => {
             res.status(500).json({ error: "An error occurred while unliking the post" });
         });
 });
-
+router.put("/comment",requireLogin,(req,res)=>{
+    const comment={
+        comment:req.body.text,
+        postedBy:req.user._id
+    }
+    POST.findByIdAndUpdate(req.body.postId,{
+        $push:{comments:comment}
+    },{
+        new:true
+    })
+    .populate("comments.postedBy","_id name")
+    .populate("postedBy", "_id name")
+    .then((result) => {
+        res.json(result);
+    })
+    .catch((err) => {
+        console.log(err);
+        res.status(500).json({ error: "An error occurred while liking the post" });
+    });
+    
+})
 module.exports = router;
