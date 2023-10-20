@@ -1,5 +1,5 @@
-const mongoose = require('mongoose');
-const {ObjectId}= mongoose.Schema.Types
+const mongoose = require("mongoose")
+const { ObjectId } = mongoose.Schema.Types
 
 const postSchema= new mongoose.Schema({
     // title:{
@@ -8,12 +8,12 @@ const postSchema= new mongoose.Schema({
     // },
 
     body:{
-        type:String,
-        required:true
+        type: String,
+        required: true
     },
     photo:{
-        type:String,
-        require:true
+        type: String,
+        require: true
     },
       likes:[{type:ObjectId,ref:"USER"}],
       comments:[{
@@ -21,9 +21,9 @@ const postSchema= new mongoose.Schema({
         postedBy:{ type:ObjectId, ref:"USER" }
       }],
     postedBy:{
-      type:ObjectId,  
+      type: ObjectId,  
       ref: "USER"
     }
-})
+});
 
 mongoose.model("POST",postSchema)

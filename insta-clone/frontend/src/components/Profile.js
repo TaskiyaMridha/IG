@@ -1,8 +1,22 @@
 import React,{useEffect,useState} from 'react'
+import PostDetail from "./PostDetail";
 import "./Profile.css";
 
 export default function Profile() {
 const [pic, setPic] = useState([])
+const [show, setShow] = useState(false)
+const [posts, setPosts] = useState([])
+
+const toggleDetails = (posts) => {
+  if (show) {
+    setShow(false);
+    
+  } else {
+    setShow(true);
+    setPosts(posts);
+  
+  }
+};
   useEffect(() => {
   fetch("http://localhost:5000/myposts",{
     headers:{
@@ -43,24 +57,21 @@ const [pic, setPic] = useState([])
     {/*Gallery*/}
      <div className="gallery">
      {pic.map((pics)=>{
-      return <img key={pics._id}src={pics.photo} alt="" className="item"/>
+      return <img key={pics._id}src={pics.photo} alt="" 
+      onClick= {()=>{
+        toggleDetails(pics)
+      }}
+      className="item"/>
 
      })}
-     {/* <img src={require('../img/T.jpg')}alt=""/>
-     <img src={require('../img/G.jpg')}alt=""/>
-     <img src={require('../img/s.jpg')}alt=""/>
-     <img src={require('../img/H.jpg')}alt=""/>
-     <img src={require('../img/profile.jpg')}alt=""/>
-     <img src={require('../img/grp.jpg')}alt=""/>
-     <img src={require('../img/X.jpg')}alt=""/>
-     <img src={require('../img/flower.jpg')}alt=""/>
-     <img src={require('../img/li.jpg')}alt=""/>
-     <img src={require('../img/iny.jpg')}alt=""/> */}
-
+    
 
 
      </div>
-     
+     {
+      show &&
+     <PostDetail item={posts} toggleDetails={toggleDetails}/>
+     }
     </div>
   );
 }
