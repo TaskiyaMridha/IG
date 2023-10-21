@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./Home.css";
 import { useNavigate } from "react-router-dom";
 import { toast } from 'react-toastify';
+import { Link } from "react-router-dom";
 
 export default function Home() {
   const navigate = useNavigate();
@@ -138,7 +139,11 @@ export default function Home() {
                   alt=""
                 />
               </div>
-              <h5>{posts.postedBy.name}</h5>
+              <h5>
+                <Link to ={`/profile/${posts.postedBy._id}`}>
+                {posts.postedBy.name}
+                </Link>
+                </h5>
               {/* card Image */}
             </div>
             <div className="card-image">
@@ -280,9 +285,8 @@ export default function Home() {
             close
           </span>
         </div>
-      </div>)
-        
-      }
+      </div>
+      )}
     </div>
   );
 }
