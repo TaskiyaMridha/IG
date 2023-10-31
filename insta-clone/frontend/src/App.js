@@ -3,17 +3,17 @@ import React,{createContext,useState} from "react";
 import './App.css';
 import Navbar from './components/Navbar';
 import {BrowserRouter, Routes, Route} from "react-router-dom";
-import Home from './components/Home';
+import Home from './screens/Home';
 import SignUp from './components/SignUp';
 import SignIn from './components/SignIn';
-import Profile from './components/Profile';
-import Createpost from './components/Createpost';
+import Profile from './screens/Profile';
+import Createpost from './screens/Createpost';
 import {ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { LoginContext } from './context/LoginContext';
 import Modal from "./components/Modal";
 import  UserProfile from "./components/UserProfile";
-import MyFolliwngPost from "./components/MyFollowingPost";
+import MyFolliwngPost from "./screens/MyFollowingPost";
 
 function App() {
   const [userLogin, setUserLogin]= useState(false);

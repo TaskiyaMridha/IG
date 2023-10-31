@@ -1,6 +1,6 @@
 import React,{useEffect,useState} from 'react'
 import logo from "../img/ig.png";
-import "./SignUp.css";
+import "../Css/SignUp.css";
 import { Link,useNavigate} from 'react-router-dom';
 import { toast } from 'react-toastify';
 

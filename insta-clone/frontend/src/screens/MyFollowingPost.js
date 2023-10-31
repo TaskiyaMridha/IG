@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from "react";
-import "./Home.css";
+import "../Css/Home.css";
 import { useNavigate } from "react-router-dom";
 import { toast } from 'react-toastify';
 import { Link } from "react-router-dom";
 
-export default function Home() {
-  var picLink = "https://cdn-icons-png.flaticon.com/128/3177/3177440.png"
-
+export default function  MyFolliwngPost() {
   const navigate = useNavigate();
   const [data, setData] = useState([]);
   const [comment, setComment] = useState("");
@@ -24,7 +22,7 @@ export default function Home() {
     }
 
     //fetching all posts
-    fetch("http://localhost:5000/allposts", {
+    fetch("http://localhost:5000/myfollwingpost", {
       headers: {
         Authorization: "Bearer " + localStorage.getItem("jwt"),
       },
@@ -137,7 +135,7 @@ export default function Home() {
             <div className="card-header">
               <div className="card-pic">
                 <img
-                  src={posts.postedBy.Photo? posts.postedBy.Photo : picLink}
+                  src="https://media.istockphoto.com/id/1389348844/photo/studio-shot-of-a-beautiful-young-woman-smiling-while-standing-against-a-grey-background.jpg?s=1024x1024&w=is&k=20&c=C772iuu-JdrSc1ficwNVDaSLQp3-II9OEpDpxPgmXPg="
                   alt=""
                 />
               </div>

@@ -1,5 +1,5 @@
 import React, {useState, useContext} from 'react';
-import "./SignIn.css";
+import "../Css/SignIn.css";
 import logo from "../img/ig.png";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from 'react-toastify';
