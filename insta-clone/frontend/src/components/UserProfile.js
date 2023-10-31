@@ -4,6 +4,8 @@ import "./Profile.css";
 import { useParams } from "react-router-dom";
 
 export default function UserProfile() {
+  var picLink = "https://cdn-icons-png.flaticon.com/128/3177/3177440.png"
+
   const { userid } = useParams();
   const [isFollow, setIsFollow] = useState(false);
   const [user, setUser] = useState("");
@@ -69,7 +71,7 @@ fetch("http://localhost:5000/follow",{
       <div className="profile-frame">
         {/* profile-pic */}
         <div className="profile-pic">
-          <img src={require("../img/profile.jpg")} alt="" />
+          <img src={user.Photo ? user.Photo : picLink} alt="" />
         </div>
         {/* profile-data */}
         <div className="profile-data">

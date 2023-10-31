@@ -5,6 +5,8 @@ import { toast } from 'react-toastify';
 import { Link } from "react-router-dom";
 
 export default function Home() {
+  var picLink = "https://cdn-icons-png.flaticon.com/128/3177/3177440.png"
+
   const navigate = useNavigate();
   const [data, setData] = useState([]);
   const [comment, setComment] = useState("");
@@ -135,7 +137,7 @@ export default function Home() {
             <div className="card-header">
               <div className="card-pic">
                 <img
-                  src="https://media.istockphoto.com/id/1389348844/photo/studio-shot-of-a-beautiful-young-woman-smiling-while-standing-against-a-grey-background.jpg?s=1024x1024&w=is&k=20&c=C772iuu-JdrSc1ficwNVDaSLQp3-II9OEpDpxPgmXPg="
+                  src={posts.postedBy.Photo? posts.postedBy.Photo : picLink}
                   alt=""
                 />
               </div>

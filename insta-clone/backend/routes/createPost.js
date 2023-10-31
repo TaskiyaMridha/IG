@@ -8,8 +8,9 @@ const POST = mongoose.model("POST");
 // Route to get all posts
 router.get("/allposts", requireLogin, (req, res) => {
   POST.find()
-    .populate("postedBy", "_id name")
+    .populate("postedBy", "_id name Photo")
     .populate("comments.postedBy", "_id name")
+    .sort("-createdAt")
     .then((posts) => {
       res.json(posts);
     })
@@ -51,6 +52,7 @@ router.get("/myposts", requireLogin, (req, res) => {
   POST.find({ postedBy: req.user._id })
     .populate("postedBy", "_id name")
     .populate("comments.postedBy", "_id name")
+    .sort("-createdAt")
 
     .then((myposts) => {
       res.json(myposts);
@@ -72,7 +74,7 @@ router.put("/like", requireLogin, (req, res) => {
     },
     { new: true }
   )
-    .populate("postedBy", "_id name")
+    .populate("postedBy", "_id name Photo")
 
     .then((result) => {
       res.json(result);
@@ -94,7 +96,7 @@ router.put("/unlike", requireLogin, (req, res) => {
     },
     { new: true }
   )
-    .populate("postedBy", "_id name")
+    .populate("postedBy", "_id name Photo")
 
     .then((result) => {
       res.json(result);
@@ -121,7 +123,7 @@ router.put("/comment", requireLogin, (req, res) => {
     }
   )
     .populate("comments.postedBy", "_id name")
-    .populate("postedBy", "_id name")
+    .populate("postedBy", "_id name Photo")
     .then((result) => {
       res.json(result);
     })

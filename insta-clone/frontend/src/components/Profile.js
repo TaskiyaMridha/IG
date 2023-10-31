@@ -1,11 +1,16 @@
 import React,{useEffect,useState} from 'react'
 import PostDetail from "./PostDetail";
 import "./Profile.css";
+import ProfilePic from "./ProfilePic";
 
 export default function Profile() {
+  var picLink = "https://cdn-icons-png.flaticon.com/128/3177/3177440.png"
 const [pic, setPic] = useState([])
 const [show, setShow] = useState(false)
 const [posts, setPosts] = useState([])
+const [user, setUser] = useState("")
+const [changePic, setChangePic] = useState(false)
+
 
 const toggleDetails = (posts) => {
   if (show) {
@@ -17,15 +22,25 @@ const toggleDetails = (posts) => {
   
   }
 };
+const changeprofile = ()=>{
+  if(changePic){
+    setChangePic(false)
+  }else{
+    setChangePic(true)
+  }
+}
+
   useEffect(() => {
-  fetch("http://localhost:5000/myposts",{
+  fetch(`http://localhost:5000/user/${JSON.parse(localStorage.getItem("user"))._id}`,{
     headers:{
       Authorization: "Bearer " + localStorage.getItem("jwt")
     }
   })
   .then(res=>res.json())
   .then((result)=>{
-    setPic(result)
+    console.log(result)
+    setPic(result.post);
+    setUser(result.user)
     console.log(pic)
   })
 }, [])
@@ -36,15 +51,17 @@ const toggleDetails = (posts) => {
      <div className="profile-frame">
       {/* profile-pic */}
       <div className="profile-pic">
-      <img src={require('../img/profile.jpg')} alt=""/>
+      <img 
+      onClick={changeprofile}
+      src={user.Photo ? user.Photo : picLink} alt=""/>
       </div>
       {/* profile-data */}
       <div className="profile-data">
     <h1>{JSON.parse(localStorage.getItem("user")).name}</h1>
     <div className="profile-info" style={{display:"flex"}}>
-      <p style={{ marginRight: "10px" }}>40 posts </p>
-      <p style={{ marginRight: "10px" }}> 40 followers </p>
-      <p> 40 following</p>
+      <p style={{ marginRight: "10px" }}> {pic? pic.length:"0"} posts </p>
+      <p style={{ marginRight: "10px" }}> {user.follower? user.followers.length : "0"} followers </p>
+      <p> {user.following? user.following.length : "0"} following</p>
        </div>
       </div>
      </div>
@@ -71,6 +88,10 @@ const toggleDetails = (posts) => {
      {
       show &&
      <PostDetail item={posts} toggleDetails={toggleDetails}/>
+     }
+     {
+      changePic &&
+      <ProfilePic changeprofile={changeprofile}/>
      }
     </div>
   );
